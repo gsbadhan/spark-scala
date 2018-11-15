@@ -12,7 +12,7 @@ export PATH=$PATH:$SPARK_HOME:$SPARK_HOME/bin:$SPARK_HOME/sbin
 
 
 Test spark using console:
-~/spark-shell
+~/spark-shell </br>
 scala> sc.textFile("/users/abc/test.json").count()
 
 
