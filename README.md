@@ -11,3 +11,8 @@ set path in ".bash_profile": export SPARK_HOME="directory path of soft link/spar
 export PATH=$PATH:$SPARK_HOME:$SPARK_HOME/bin:$SPARK_HOME/sbin
 
 
+Test spark using console:
+~/spark-shell
+scala> sc.textFile("/users/abc/test.json").count()
+
+
