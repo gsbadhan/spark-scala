@@ -9,7 +9,7 @@ object RddTest {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("RddTest").setMaster("local[*]")
     val sc = new SparkContext(conf)
-    val lines = sc.textFile("src/main/scala/com/demo/showrdd/data.txt")
+    val lines = sc.textFile("/Users/gurpreet.singh/git/spark-scala/src/main/scala/com/demo/showrdd/data.txt")
     val data =lines.flatMap(line => {
       val chunk = line.split(",")
       Seq(new Tempdata(chunk(0).toInt, chunk(1).toString(),chunk(2).toInt))
