@@ -1,10 +1,7 @@
-package com.demp.kafka.consumer
+package com.demo.kafka.consumer
 
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.streaming.kafka010.KafkaUtils
-import scala.collection.mutable.Subscriber
-import org.apache.spark.streaming.kafka010.PreferConsistent
-import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.Seconds
@@ -29,7 +26,9 @@ object ConsumeEvents {
     val messages = KafkaUtils.createDirectStream[String, String](
       ssc, LocationStrategies.PreferConsistent, ConsumerStrategies.Subscribe[String, String](topics, kafkaParams))
 
-    print("consumer: ", messages)
+    messages.foreachRDD(rdd=>rdd.foreach(rcd => {
+      print(rcd.key(), rcd.value())
+    }))
 
     ssc.start()
     ssc.awaitTermination()
